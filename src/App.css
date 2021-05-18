@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  background-color: #2b3852;
+  min-height: 100vh;
+  background-image: linear-gradient(rgb(132, 0, 255), rgb(18, 8, 61));
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
