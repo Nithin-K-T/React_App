@@ -17,6 +17,8 @@
 }
 .header{
   font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 .box div {
   display: flex ;
@@ -50,6 +52,11 @@ input {
   background-color: #ffffff;
   color: #4CAF50;
   cursor: pointer;
+}
+.Submit_btn:disabled{
+  background:  rgb(102, 100, 100);
+  color: #4CAF50;
+  cursor: no-drop;
 }
 .listItem{
   text-align: left;

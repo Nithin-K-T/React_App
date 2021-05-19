@@ -1,20 +1,24 @@
-import React, { useState, useForm } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
 import TodoList from './TodoList';
 import './form.css';
 
 const Form = (props) => {
 
   const [items, setItems] = useState([]);
+  const [disable, setDisable] = useState(true);
   const [getEmployeeData, setEmployeeData] = useState([]);
   const [errVal, setErr] = useState(0);
 
   const handleChange = ({ target }) => {
 
     const { name, value } = target;
-    if(value != ''){
+    if(value !== ''){
       const newData = Object.assign({}, getEmployeeData, { [name]: value});
+      //console.log(newData);
       setEmployeeData(newData);
+      if(Object.keys(newData).length === 6){
+        setDisable(false);
+      }
     }else{
       setErr(1);
     }
@@ -23,20 +27,22 @@ const Form = (props) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(getEmployeeData.length);
-    if (getEmployeeData.length === 0) {
+    if (Object.keys(getEmployeeData).length === 0) {
       alert('fill all the fields');
       return;
     }else{
-      const newItems = { getEmployeeData, id: Date.now()}
+      const newItems = { getEmployeeData , id: Date.now()}
       setItems(() => (items.concat(newItems)))
       setEmployeeData('');
-      //console.log(newItems);
+      setDisable(true);
+      e.target.reset();
+      //window.location.reload();
     }
   }
+ 
 
   return ( 
-    <div> 
+    <> 
     <div className="box"> 
       <h3 className="header">Employee Details</h3>
       <form onSubmit={handleSubmit}>
@@ -52,7 +58,7 @@ const Form = (props) => {
         /></div>
         <div>
         <label htmlFor="empid">Employee ID</label>
-        <input type="text"
+        <input type="number"
                name='empid' 
                id="empid"
                onChange={handleChange} 
@@ -92,7 +98,7 @@ const Form = (props) => {
                onChange={handleChange} 
                value={getEmployeeData.project}                
         /></div>               
-        <button type="submit" className="Submit_btn">
+        <button disabled={disable} type="submit" className="Submit_btn">
           Submit
         </button>
         
@@ -100,7 +106,7 @@ const Form = (props) => {
        
     </div>
     <TodoList items = {items} />
-    </div>
+    </>
   );  
  
   
