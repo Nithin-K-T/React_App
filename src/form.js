@@ -14,7 +14,6 @@ const Form = (props) => {
     const { name, value } = target;
     if(value !== ''){
       const newData = Object.assign({}, getEmployeeData, { [name]: value});
-      //console.log(newData);
       setEmployeeData(newData);
       if(Object.keys(newData).length === 6){
         setDisable(false);
@@ -53,6 +52,7 @@ const Form = (props) => {
         <input type="text"
                name='name'
                id='name'
+               required
                onChange={handleChange}
                value={getEmployeeData.name}
         /></div>
@@ -61,6 +61,7 @@ const Form = (props) => {
         <input type="number"
                name='empid' 
                id="empid"
+               required
                onChange={handleChange} 
                value={getEmployeeData.empid}                 
         /></div>
@@ -71,6 +72,7 @@ const Form = (props) => {
         <input type="text"
                name='position'
                id='position'
+               required
                onChange={handleChange}
                value={getEmployeeData.position}
         /></div>
@@ -79,6 +81,7 @@ const Form = (props) => {
         <input type="email" 
                name='email'
                id="email"
+               required
                onChange={handleChange} 
                value={getEmployeeData.email}       
         /></div>
@@ -87,6 +90,7 @@ const Form = (props) => {
         <input type="text" 
                name='location'
                id="location" 
+               required
                onChange={handleChange} 
                value={getEmployeeData.location}               
         /></div>
@@ -94,11 +98,12 @@ const Form = (props) => {
         <label htmlFor="project">Project</label>
         <input type="text"
                name='project'
-               id="project" 
+               id="project"
+               required 
                onChange={handleChange} 
                value={getEmployeeData.project}                
         /></div>               
-        <button disabled={disable} type="submit" className="Submit_btn">
+        <button  type="submit" className="Submit_btn">
           Submit
         </button>
         
